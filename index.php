@@ -9,13 +9,19 @@ require_once("grab.php");
 <?php 
 if(!empty($_GET["ISBN"])){	
 	$isbn = $_GET["ISBN"];
-
 	$book = new Book($isbn);
+	
 	echo $book->getTitle() ."<br />";
 	echo $book->getSubTitle() ."<br />";
-	echo "<img src=".$book->getLargeCover()." /><br />";
+	echo "<img src=".$book->getCover("medium")." /><br />";
 	echo $book->getPublishDate()."<br />";
-	echo $book->getPublisherName();
+	echo $book->getPublisherName() ."<br />";
+	echo $book->getOpenLibraryID() ."<br />";
+	echo $book->getISBN_13() ."<br />";
+	echo $book->getISBN_10() ."<br />";
+	echo $book->getAuthorName() ."<br />";
+
+
 }
 ?>
 
