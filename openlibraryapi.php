@@ -3,23 +3,31 @@
 *	Use the Open Library API to return details stored by the service for use. 
 *	
 *	@Author Adam Matthews
-*	@Date 16/2/2013
+*	@Date 16/2/2013 (13/3/13)
 *	
 *	Contact Email: am559@kent.ac.uk
 *
-*	Usage: $book = new Book('ISBN');
+*	Usage: $book = new OpenLibrary();
 *		   $book->getTitle()
 *	
 */
-class Book{
+class OpenLibrary{
 	
 	protected $ol;
 	protected $isbn;
 	
 	function __construct($book_isbn){
+
+	}
+	
+	/**
+	* Set the ISBN to initiate the call to OL
+	**/
+	function setISBN($book_isbn){	
 		$result = file_get_contents('http://openlibrary.org/api/books?bibkeys=ISBN:'.$book_isbn.'&format=json&jscmd=data');
 		$this->ol = json_decode($result, TRUE);			
 		$this->isbn = $book_isbn;
+		
 	}
 	
 	/*
